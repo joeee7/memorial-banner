@@ -3,36 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Review & Editor - X-Banner Duka Cita Kristen Protestan (60x160 cm)</title>
+    <title>Aesthetic Memorial X-Banner Studio (Editable Text & Photo)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #090d16;
-            --card-bg: #111726;
-            --card-border: #1e293b;
+            --bg: #080c14;
+            --card: #0f1523;
+            --border: #1e293b;
             --gold: #d4af37;
-            --gold-light: #f3e5ab;
-            --gold-dark: #aa8c2c;
-            --text-main: #f8fafc;
+            --gold-light: #fef08a;
+            --gold-dark: #a16207;
+            --text: #f8fafc;
             --text-muted: #94a3b8;
-            --accent: #2563eb;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             background-color: var(--bg);
-            color: var(--text-main);
+            color: var(--text);
             font-family: 'Plus Jakarta Sans', sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
         header {
-            background: rgba(17, 23, 38, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--card-border);
-            padding: 16px 24px;
+            background: rgba(15, 21, 35, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -45,217 +44,177 @@
             align-items: center;
             gap: 12px;
         }
-        .cross-icon {
+        .cross {
             color: var(--gold);
             font-size: 24px;
-            filter: drop-shadow(0 0 8px rgba(212,175,55,0.4));
+            filter: drop-shadow(0 0 10px rgba(212,175,55,0.5));
         }
-        .brand-title {
+        .title {
             font-family: 'Cinzel', serif;
-            font-size: 18px;
+            font-size: 17px;
             color: var(--gold-light);
             letter-spacing: 0.5px;
         }
-        .brand-sub {
-            font-size: 12px;
+        .subtitle {
+            font-size: 11px;
             color: var(--text-muted);
         }
-        .status-badge {
+        .badge {
             background: rgba(34, 197, 94, 0.15);
             color: #4ade80;
             border: 1px solid rgba(34, 197, 94, 0.3);
-            padding: 6px 12px;
-            border-radius: 999px;
+            padding: 5px 12px;
+            border-radius: 99px;
             font-size: 12px;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: #4ade80;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.85); }
         }
         main {
             flex: 1;
-            max-width: 1300px;
+            max-width: 1350px;
             width: 100%;
             margin: 0 auto;
             padding: 24px 20px 48px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.1fr;
             gap: 32px;
             align-items: start;
         }
-        @media (max-width: 900px) {
+        @media (max-width: 950px) {
             main { grid-template-columns: 1fr; }
         }
         .preview-pane {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
+            background: var(--card);
+            border: 1px solid var(--border);
             border-radius: 16px;
             padding: 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
             position: sticky;
-            top: 90px;
+            top: 85px;
         }
-        .preview-header {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-        .tab-btn {
-            background: #1e293b;
-            color: var(--text-muted);
-            border: 1px solid transparent;
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .tab-btn.active {
-            background: rgba(212, 175, 55, 0.15);
-            color: var(--gold-light);
-            border-color: rgba(212, 175, 55, 0.4);
-        }
-        .banner-container {
+        .canvas-wrapper {
             width: 100%;
             max-width: 360px;
             aspect-ratio: 60 / 160;
             background: #000;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(212,175,55,0.15);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 25px rgba(212,175,55,0.15);
             border: 2px solid var(--gold-dark);
             position: relative;
         }
-        .banner-container img {
+        #bannerCanvas {
             width: 100%;
             height: 100%;
-            object-fit: cover;
             display: block;
         }
         .editor-pane {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
+            background: var(--card);
+            border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 28px;
+            padding: 26px;
         }
-        .section-title {
+        .panel-heading {
             font-family: 'Cinzel', serif;
             color: var(--gold-light);
             font-size: 18px;
-            margin-bottom: 8px;
-        }
-        .section-desc {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-            line-height: 1.5;
-        }
-        .form-group {
-            margin-bottom: 18px;
-        }
-        .form-label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-main);
             margin-bottom: 6px;
         }
-        .form-input, .form-select, .form-textarea {
+        .panel-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .field-group {
+            margin-bottom: 16px;
+        }
+        .field-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .input-text, .select-box, .textarea-box {
             width: 100%;
-            background: #0b1120;
+            background: #090e18;
             border: 1px solid #1e293b;
             color: #fff;
             padding: 10px 14px;
             border-radius: 8px;
             font-size: 14px;
             outline: none;
-            transition: border-color 0.2s;
+            transition: all 0.2s;
             font-family: inherit;
         }
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
+        .input-text:focus, .select-box:focus, .textarea-box:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(212,175,55,0.2);
+        }
+        .photo-upload-box {
+            background: rgba(212,175,55,0.06);
+            border: 2px dashed rgba(212,175,55,0.3);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 16px;
+        }
+        .photo-upload-box:hover {
+            background: rgba(212,175,55,0.12);
             border-color: var(--gold);
         }
-        .action-grid {
+        .btn-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 24px;
+            gap: 10px;
+            margin-top: 22px;
         }
-        .btn-primary {
-            background: linear-gradient(135deg, #d4af37, #aa8c2c);
+        .btn-download {
+            grid-column: span 2;
+            background: linear-gradient(135deg, #d4af37, #996515);
             color: #0b1120;
             font-weight: 700;
-            padding: 12px 18px;
+            padding: 14px;
             border-radius: 10px;
             border: none;
             cursor: pointer;
+            font-size: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            font-size: 14px;
-            text-decoration: none;
             transition: transform 0.15s, filter 0.15s;
         }
-        .btn-primary:hover {
-            filter: brightness(1.1);
+        .btn-download:hover {
+            filter: brightness(1.15);
             transform: translateY(-1px);
         }
-        .btn-secondary {
+        .btn-link {
             background: #1e293b;
             color: #fff;
             font-weight: 600;
-            padding: 12px 18px;
-            border-radius: 10px;
+            padding: 11px 16px;
+            border-radius: 8px;
             border: 1px solid #334155;
             cursor: pointer;
+            font-size: 13px;
+            text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-size: 14px;
-            text-decoration: none;
-            transition: all 0.15s;
+            gap: 6px;
+            transition: all 0.2s;
         }
-        .btn-secondary:hover {
+        .btn-link:hover {
             background: #334155;
             border-color: var(--gold);
-        }
-        .toast {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: #10b981;
-            color: #fff;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 100;
-        }
-        .toast.show {
-            transform: translateY(0);
-            opacity: 1;
+            color: var(--gold-light);
         }
     </style>
 </head>
@@ -263,104 +222,121 @@
 
     <header>
         <div class="brand">
-            <span class="cross-icon">✝</span>
+            <span class="cross">✝</span>
             <div>
-                <h1 class="brand-title">X-Banner Duka Cita Kristen Protestan</h1>
-                <p class="brand-sub">Standar Ukuran 60 × 160 cm &bull; Siap Cetak Digital</p>
+                <h1 class="title">Studio Desain X-Banner Memorial Kristen</h1>
+                <p class="subtitle">Standar Percetakan 60 × 160 cm &bull; Layer Teks & Foto Dapat Diedit Penuh</p>
             </div>
         </div>
-        <div class="status-badge">
-            <span class="status-dot"></span>
-            Live Progress &bull; Siap Ditinjau
-        </div>
+        <div class="badge">Live Editable &bull; Auto-Render</div>
     </header>
 
     <main>
-        <!-- Preview Section -->
+        <!-- Preview Canvas -->
         <section class="preview-pane">
-            <div class="preview-header">
-                <span style="font-size: 13px; font-weight: 600; color: var(--gold-light);">PRATINJAU DESAIN</span>
-                <div style="display: flex; gap: 6px;">
-                    <button class="tab-btn active" id="tabPrint" onclick="switchView('print')">Format Cetak 60x160</button>
-                    <button class="tab-btn" id="tabMockup" onclick="switchView('mockup')">Mockup Display</button>
-                </div>
+            <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                <span style="font-size: 12px; font-weight: 700; color: var(--gold-light); letter-spacing: 1px;">CANVAS LIVE (60×160 CM)</span>
+                <span style="font-size: 12px; color: var(--text-muted);">Resolusi Asli: 1200 × 3200 px</span>
             </div>
 
-            <div class="banner-container">
-                <img id="bannerImage" src="./static/x_banner_kristen_protestan_60x160.png" alt="X-Banner Duka Cita Kristen">
+            <div class="canvas-wrapper">
+                <canvas id="bannerCanvas" width="1200" height="3200"></canvas>
             </div>
 
             <p style="font-size: 12px; color: var(--text-muted); margin-top: 14px; text-align: center;">
-                Rasio 3:8 (60×160 cm) &bull; Dilengkapi 4 Mata Ayam (*Grommet Holes*)
+                Perubahan pada formulir di samping langsung ter-render otomatis ke dalam canvas di atas.
             </p>
         </section>
 
-        <!-- Editor & Actions Section -->
+        <!-- Editor Form -->
         <section class="editor-pane">
-            <h2 class="section-title">Konfigurasi Teks Draf</h2>
-            <p class="section-desc">
-                Teks di bawah ini sudah tertanam dalam draf. Anda dapat menyesuaikan nama almarhum, keluarga yang berduka, serta memilih ayat Alkitab yang dikehendaki.
+            <h2 class="panel-heading">Sesuaikan Teks &amp; Sisipkan Foto</h2>
+            <p class="panel-desc">
+                Ubah nama, tanggal, maupun kutipan ayat Alkitab di bawah. Unggah foto almarhum untuk dimasukkan ke dalam bingkai oval emas.
             </p>
 
-            <div class="form-group">
-                <label class="form-label">Ayat Alkitab / Firman Penghiburan</label>
-                <select class="form-select" id="verseSelect" onchange="updateVerse()">
+            <!-- Photo Upload -->
+            <label class="field-label">Foto Almarhum (Otomatis Masuk ke Bingkai Oval)</label>
+            <div class="photo-upload-box" onclick="document.getElementById('photoInput').click()">
+                <div style="font-size: 26px; margin-bottom: 4px;">📷</div>
+                <div style="font-size: 13px; font-weight: 600; color: var(--gold-light);">Klik untuk Memilih Foto dari Perangkat</div>
+                <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Format JPG, PNG, atau WebP (Disarankan potret vertikal)</div>
+                <input type="file" id="photoInput" accept="image/*" style="display: none;" onchange="handlePhotoUpload(event)">
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Header Ucapan</label>
+                <input type="text" class="input-text" id="headerText" value="TURUT BERDUKA CITA" oninput="renderCanvas()">
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Keterangan Berita Duka</label>
+                <input type="text" class="input-text" id="subText" value="Telah Berpulang ke Rumah Bapa di Surga" oninput="renderCanvas()">
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Pilihan Ayat Alkitab</label>
+                <select class="select-box" id="verseSelect" onchange="applyVersePreset()">
                     <option value="2tim47">2 Timotius 4:7 - &quot;Aku telah mengakhiri pertandingan yang baik...&quot;</option>
-                    <option value="mazmur23">Mazmur 23:1-3 - &quot;TUHAN adalah gembalaku, takkan kekurangan aku...&quot;</option>
+                    <option value="mazmur23">Mazmur 23:1 - &quot;TUHAN adalah gembalaku, takkan kekurangan aku.&quot;</option>
                     <option value="yoh1125">Yohanes 11:25 - &quot;Akulah kebangkitan dan hidup...&quot;</option>
                     <option value="filipi121">Filipi 1:21 - &quot;Karena bagiku hidup adalah Kristus dan mati adalah keuntungan.&quot;</option>
-                    <option value="custom">Teks Kustom Sendiri...</option>
+                    <option value="custom">Ketik Ayat Kustom...</option>
                 </select>
-                <textarea class="form-textarea" id="verseText" rows="2" style="margin-top: 8px;" readonly>&quot;Aku telah mengakhiri pertandingan yang baik, aku telah mencapai garis akhir dan aku telah memelihara iman.&quot; (2 Timotius 4:7)</textarea>
+                <textarea class="textarea-box" id="verseText" rows="2" style="margin-top: 6px;" oninput="renderCanvas()">&quot;Aku telah mengakhiri pertandingan yang baik, aku telah mencapai garis akhir dan aku telah memelihara iman.&quot; (2 Timotius 4:7)</textarea>
             </div>
 
-            <div class="form-group">
-                <label class="form-label">Nama Lengkap Almarhum / Almarhumah</label>
-                <input type="text" class="form-input" id="deceasedName" value="Bpk. [Nama Lengkap Almarhum]" placeholder="Contoh: Bpk. Stefanus Yosua Siregar">
+            <div class="field-group">
+                <label class="field-label">Nama Lengkap Almarhum / Almarhumah</label>
+                <input type="text" class="input-text" id="nameText" value="Bpk. [Nama Lengkap Almarhum]" placeholder="Contoh: Bpk. Jonathan Abraham Tidajoh" oninput="renderCanvas()">
             </div>
 
-            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="field-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                 <div>
-                    <label class="form-label">Tutup Usia</label>
-                    <input type="text" class="form-input" id="deceasedAge" value="68 Tahun" placeholder="Contoh: 68 Tahun">
+                    <label class="field-label">Tutup Usia</label>
+                    <input type="text" class="input-text" id="ageText" value="Tutup Usia 68 Tahun" oninput="renderCanvas()">
                 </div>
                 <div>
-                    <label class="form-label">Hubungan dengan Sahabat</label>
-                    <input type="text" class="form-input" id="familyRelation" value="Ayahanda Tercinta dari [Nama Sahabat]" placeholder="Contoh: Ayahanda Tercinta dari Jonathan">
+                    <label class="field-label">Hubungan Keluarga</label>
+                    <input type="text" class="input-text" id="relationText" value="Ayahanda Tercinta dari [Nama Sahabat]" oninput="renderCanvas()">
                 </div>
             </div>
 
-            <div class="form-group">
-                <label class="form-label">Nama Pengirim (Anda &amp; Sahabat-Sahabat)</label>
-                <input type="text" class="form-input" id="senderName" value="Jonathan Tidajoh &amp; Rekan-Rekan Terkasih" placeholder="Contoh: Sahabat-Sahabat Alumni &amp; Rekan Kerja">
+            <div class="field-group">
+                <label class="field-label">Pengirim (Nama Anda &amp; Sahabat-Sahabat)</label>
+                <input type="text" class="input-text" id="senderText" value="Sahabat-Sahabat &amp; Rekan Kerja Terkasih" oninput="renderCanvas()">
             </div>
 
-            <div class="action-grid">
-                <a href="./static/x_banner_kristen_protestan_60x160.png" download="x_banner_kristen_protestan_60x160.png" class="btn-primary">
-                    ⬇ Unduh PNG (Siap Cetak)
-                </a>
-                <button onclick="copyFullText()" class="btn-secondary">
-                    📋 Salin Teks Draf
+            <!-- Action Buttons -->
+            <div class="btn-grid">
+                <button class="btn-download" onclick="downloadImage()">
+                    💾 Unduh Hasil Akhir PNG Siap Cetak (60×160 cm)
                 </button>
-                <a href="https://www.canva.com/templates/?query=christian+funeral+banner" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-                    🎨 Buka Template Canva
+                <a href="https://www.photopea.com/#%7B%22files%22%3A%5B%22https%3A%2F%2Ffiles.catbox.moe%2Fwkozhf.png%22%5D%7D" target="_blank" rel="noopener noreferrer" class="btn-link">
+                    🖌️ Buka Template di Photopea
                 </a>
-                <a href="https://www.photopea.com" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-                    🖥️ Buka di Photopea (Web)
+                <a href="https://www.canva.com/create/banners/" target="_blank" rel="noopener noreferrer" class="btn-link">
+                    🎨 Buka Kanvas di Canva
                 </a>
-            </div>
-
-            <div style="margin-top: 24px; padding: 14px; background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.25); border-radius: 10px;">
-                <p style="font-size: 13px; color: var(--gold-light); line-height: 1.5;">
-                    💡 <b>Tautan Publik:</b> Siapa pun yang membuka tautan ini dapat meninjau desain, mengunduh berkas resolusi tinggi, atau menyalin susunan redaksi untuk diedit lebih lanjut.
-                </p>
             </div>
         </section>
     </main>
 
-    <div class="toast" id="toast">Teks draf berhasil disalin ke clipboard!</div>
-
     <script>
+        const canvas = document.getElementById('bannerCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Load background template
+        const bgImg = new Image();
+        bgImg.crossOrigin = 'anonymous';
+        bgImg.src = 'https://files.catbox.moe/wkozhf.png';
+
+        let userPhoto = null;
+
+        bgImg.onload = function() {
+            renderCanvas();
+        };
+
         const verses = {
             '2tim47': '"Aku telah mengakhiri pertandingan yang baik, aku telah mencapai garis akhir dan aku telah memelihara iman." (2 Timotius 4:7)',
             'mazmur23': '"TUHAN adalah gembalaku, takkan kekurangan aku. Ia membaringkan aku di padang yang berumput hijau." (Mazmur 23:1-2)',
@@ -368,59 +344,140 @@
             'filipi121': '"Karena bagiku hidup adalah Kristus dan mati adalah keuntungan." (Filipi 1:21)'
         };
 
-        function updateVerse() {
-            const sel = document.getElementById('verseSelect').value;
-            const area = document.getElementById('verseText');
-            if (sel === 'custom') {
-                area.removeAttribute('readonly');
-                area.focus();
+        function applyVersePreset() {
+            const val = document.getElementById('verseSelect').value;
+            if (val !== 'custom') {
+                document.getElementById('verseText').value = verses[val] || '';
+            }
+            renderCanvas();
+        }
+
+        function handlePhotoUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                userPhoto = new Image();
+                userPhoto.onload = function() {
+                    renderCanvas();
+                };
+                userPhoto.src = evt.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function renderCanvas() {
+            // 1. Draw Background
+            if (bgImg.complete) {
+                ctx.drawImage(bgImg, 0, 0, 1200, 3200);
             } else {
-                area.setAttribute('readonly', 'true');
-                area.value = verses[sel] || '';
+                ctx.fillStyle = '#0f172a';
+                ctx.fillRect(0, 0, 1200, 3200);
+            }
+
+            // 2. Draw User Photo inside the golden oval frame if provided
+            // Frame coordinates on 1200x3200 canvas: Center is around (600, 1600), radiusX ~180, radiusY ~240
+            const ovalX = 600;
+            const ovalY = 1600;
+            const ovalRadiusX = 180;
+            const ovalRadiusY = 240;
+
+            if (userPhoto) {
+                ctx.save();
+                ctx.beginPath();
+                ctx.ellipse(ovalX, ovalY, ovalRadiusX, ovalRadiusY, 0, 0, 2 * Math.PI);
+                ctx.clip();
+
+                // Draw photo fitted proportionally
+                const scale = Math.max((ovalRadiusX * 2) / userPhoto.width, (ovalRadiusY * 2) / userPhoto.height);
+                const pw = userPhoto.width * scale;
+                const ph = userPhoto.height * scale;
+                ctx.drawImage(userPhoto, ovalX - pw / 2, ovalY - ph / 2, pw, ph);
+                ctx.restore();
+            }
+
+            // 3. Draw Typography
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            // Top Verse
+            const verse = document.getElementById('verseText').value;
+            ctx.font = 'italic 500 24px "Playfair Display", serif';
+            ctx.fillStyle = '#fef08a';
+            wrapText(ctx, verse, 600, 780, 880, 36);
+
+            // Header "TURUT BERDUKA CITA"
+            const header = document.getElementById('headerText').value;
+            ctx.font = '800 52px "Cinzel", serif';
+            ctx.fillStyle = '#ffffff';
+            ctx.shadowColor = 'rgba(0,0,0,0.8)';
+            ctx.shadowBlur = 12;
+            ctx.fillText(header, 600, 930);
+            ctx.shadowBlur = 0;
+
+            // Subtitle "Telah Berpulang ke Rumah Bapa di Surga"
+            const subtitle = document.getElementById('subText').value;
+            ctx.font = '600 32px "Playfair Display", serif';
+            ctx.fillStyle = '#d4af37';
+            ctx.fillText(subtitle, 600, 1010);
+
+            // Deceased Name (below frame)
+            const name = document.getElementById('nameText').value;
+            ctx.font = '700 46px "Cinzel", serif';
+            ctx.fillStyle = '#ffffff';
+            ctx.shadowColor = 'rgba(212,175,55,0.4)';
+            ctx.shadowBlur = 15;
+            ctx.fillText(name, 600, 1960);
+            ctx.shadowBlur = 0;
+
+            // Age & Relation
+            const age = document.getElementById('ageText').value;
+            const relation = document.getElementById('relationText').value;
+            ctx.font = '500 28px "Plus Jakarta Sans", sans-serif';
+            ctx.fillStyle = '#cbd5e1';
+            ctx.fillText(age, 600, 2030);
+            ctx.fillText(relation, 600, 2080);
+
+            // Sender
+            const sender = document.getElementById('senderText').value;
+            ctx.font = '600 24px "Cinzel", serif';
+            ctx.fillStyle = '#d4af37';
+            ctx.fillText("KAMI YANG TURUT BERBELASUNGKAWA:", 600, 2480);
+
+            ctx.font = '700 32px "Playfair Display", serif';
+            ctx.fillStyle = '#ffffff';
+            ctx.fillText(sender, 600, 2540);
+        }
+
+        function wrapText(context, text, x, y, maxWidth, lineHeight) {
+            const words = text.split(' ');
+            let line = '';
+            const lines = [];
+
+            for (let n = 0; n < words.length; n++) {
+                const testLine = line + words[n] + ' ';
+                const metrics = context.measureText(testLine);
+                const testWidth = metrics.width;
+                if (testWidth > maxWidth && n > 0) {
+                    lines.push(line);
+                    line = words[n] + ' ';
+                } else {
+                    line = testLine;
+                }
+            }
+            lines.push(line);
+
+            const startY = y - ((lines.length - 1) * lineHeight) / 2;
+            for (let k = 0; k < lines.length; k++) {
+                context.fillText(lines[k].trim(), x, startY + (k * lineHeight));
             }
         }
 
-        function switchView(mode) {
-            const img = document.getElementById('bannerImage');
-            const btnPrint = document.getElementById('tabPrint');
-            const btnMockup = document.getElementById('tabMockup');
-            if (mode === 'print') {
-                img.src = './static/x_banner_kristen_protestan_60x160.png';
-                btnPrint.classList.add('active');
-                btnMockup.classList.remove('active');
-            } else {
-                img.src = './static/x_banner_kristen_mockup.png';
-                btnMockup.classList.add('active');
-                btnPrint.classList.remove('active');
-            }
-        }
-
-        function copyFullText() {
-            const v = document.getElementById('verseText').value;
-            const name = document.getElementById('deceasedName').value;
-            const age = document.getElementById('deceasedAge').value;
-            const rel = document.getElementById('familyRelation').value;
-            const sender = document.getElementById('senderName').value;
-
-            const text = `✝ TURUT BERDUKA CITA ✝\n` +
-                         `Telah Berpulang ke Rumah Bapa di Surga:\n\n` +
-                         `${name}\n` +
-                         `Tutup Usia: ${age}\n` +
-                         `${rel}\n\n` +
-                         `Firman Penghiburan:\n${v}\n\n` +
-                         `Kami yang Mengasihi & Turut Berbelasungkawa:\n` +
-                         `${sender}`;
-
-            navigator.clipboard.writeText(text).then(() => {
-                showToast("Teks draf berhasil disalin!");
-            });
-        }
-
-        function showToast(msg) {
-            const t = document.getElementById('toast');
-            t.innerText = msg;
-            t.classList.add('show');
-            setTimeout(() => t.classList.remove('show'), 2500);
+        function downloadImage() {
+            const link = document.createElement('a');
+            link.download = 'x_banner_duka_cita_kristen_60x160.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
         }
     </script>
 </body>
