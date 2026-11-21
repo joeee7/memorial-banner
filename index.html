@@ -287,7 +287,7 @@
             </div>
 
             <div class="banner-container">
-                <img id="bannerImage" src="/static/x_banner_kristen_protestan_60x160.png" alt="X-Banner Duka Cita Kristen">
+                <img id="bannerImage" src="./static/x_banner_kristen_protestan_60x160.png" alt="X-Banner Duka Cita Kristen">
             </div>
 
             <p style="font-size: 12px; color: var(--text-muted); margin-top: 14px; text-align: center;">
@@ -336,7 +336,7 @@
             </div>
 
             <div class="action-grid">
-                <a href="/static/x_banner_kristen_protestan_60x160.png" download="x_banner_kristen_protestan_60x160.png" class="btn-primary">
+                <a href="./static/x_banner_kristen_protestan_60x160.png" download="x_banner_kristen_protestan_60x160.png" class="btn-primary">
                     ⬇ Unduh PNG (Siap Cetak)
                 </a>
                 <button onclick="copyFullText()" class="btn-secondary">
@@ -385,11 +385,11 @@
             const btnPrint = document.getElementById('tabPrint');
             const btnMockup = document.getElementById('tabMockup');
             if (mode === 'print') {
-                img.src = '/static/x_banner_kristen_protestan_60x160.png';
+                img.src = './static/x_banner_kristen_protestan_60x160.png';
                 btnPrint.classList.add('active');
                 btnMockup.classList.remove('active');
             } else {
-                img.src = '/static/x_banner_kristen_mockup.png';
+                img.src = './static/x_banner_kristen_mockup.png';
                 btnMockup.classList.add('active');
                 btnPrint.classList.remove('active');
             }
