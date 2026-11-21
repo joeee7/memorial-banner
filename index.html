@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Review & Editor - X-Banner Duka Cita Kristen Protestan (60x160 cm)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #090d16;
+            --card-bg: #111726;
+            --card-border: #1e293b;
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-dark: #aa8c2c;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #2563eb;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: rgba(17, 23, 38, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .cross-icon {
+            color: var(--gold);
+            font-size: 24px;
+            filter: drop-shadow(0 0 8px rgba(212,175,55,0.4));
+        }
+        .brand-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--gold-light);
+            letter-spacing: 0.5px;
+        }
+        .brand-sub {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .status-badge {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+        main {
+            flex: 1;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 24px 20px 48px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+        @media (max-width: 900px) {
+            main { grid-template-columns: 1fr; }
+        }
+        .preview-pane {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: sticky;
+            top: 90px;
+        }
+        .preview-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .tab-btn {
+            background: #1e293b;
+            color: var(--text-muted);
+            border: 1px solid transparent;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold-light);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+        .banner-container {
+            width: 100%;
+            max-width: 360px;
+            aspect-ratio: 60 / 160;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(212,175,55,0.15);
+            border: 2px solid var(--gold-dark);
+            position: relative;
+        }
+        .banner-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .editor-pane {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 28px;
+        }
+        .section-title {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-light);
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        .section-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            background: #0b1120;
+            border: 1px solid #1e293b;
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--gold);
+        }
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37, #aa8c2c);
+            color: #0b1120;
+            font-weight: 700;
+            padding: 12px 18px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: transform 0.15s, filter 0.15s;
+        }
+        .btn-primary:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+        .btn-secondary {
+            background: #1e293b;
+            color: #fff;
+            font-weight: 600;
+            padding: 12px 18px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.15s;
+        }
+        .btn-secondary:hover {
+            background: #334155;
+            border-color: var(--gold);
+        }
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #10b981;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <span class="cross-icon">✝</span>
+            <div>
+                <h1 class="brand-title">X-Banner Duka Cita Kristen Protestan</h1>
+                <p class="brand-sub">Standar Ukuran 60 × 160 cm &bull; Siap Cetak Digital</p>
+            </div>
+        </div>
+        <div class="status-badge">
+            <span class="status-dot"></span>
+            Live Progress &bull; Siap Ditinjau
+        </div>
+    </header>
+
+    <main>
+        <!-- Preview Section -->
+        <section class="preview-pane">
+            <div class="preview-header">
+                <span style="font-size: 13px; font-weight: 600; color: var(--gold-light);">PRATINJAU DESAIN</span>
+                <div style="display: flex; gap: 6px;">
+                    <button class="tab-btn active" id="tabPrint" onclick="switchView('print')">Format Cetak 60x160</button>
+                    <button class="tab-btn" id="tabMockup" onclick="switchView('mockup')">Mockup Display</button>
+                </div>
+            </div>
+
+            <div class="banner-container">
+                <img id="bannerImage" src="/static/x_banner_kristen_protestan_60x160.png" alt="X-Banner Duka Cita Kristen">
+            </div>
+
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 14px; text-align: center;">
+                Rasio 3:8 (60×160 cm) &bull; Dilengkapi 4 Mata Ayam (*Grommet Holes*)
+            </p>
+        </section>
+
+        <!-- Editor & Actions Section -->
+        <section class="editor-pane">
+            <h2 class="section-title">Konfigurasi Teks Draf</h2>
+            <p class="section-desc">
+                Teks di bawah ini sudah tertanam dalam draf. Anda dapat menyesuaikan nama almarhum, keluarga yang berduka, serta memilih ayat Alkitab yang dikehendaki.
+            </p>
+
+            <div class="form-group">
+                <label class="form-label">Ayat Alkitab / Firman Penghiburan</label>
+                <select class="form-select" id="verseSelect" onchange="updateVerse()">
+                    <option value="2tim47">2 Timotius 4:7 - &quot;Aku telah mengakhiri pertandingan yang baik...&quot;</option>
+                    <option value="mazmur23">Mazmur 23:1-3 - &quot;TUHAN adalah gembalaku, takkan kekurangan aku...&quot;</option>
+                    <option value="yoh1125">Yohanes 11:25 - &quot;Akulah kebangkitan dan hidup...&quot;</option>
+                    <option value="filipi121">Filipi 1:21 - &quot;Karena bagiku hidup adalah Kristus dan mati adalah keuntungan.&quot;</option>
+                    <option value="custom">Teks Kustom Sendiri...</option>
+                </select>
+                <textarea class="form-textarea" id="verseText" rows="2" style="margin-top: 8px;" readonly>&quot;Aku telah mengakhiri pertandingan yang baik, aku telah mencapai garis akhir dan aku telah memelihara iman.&quot; (2 Timotius 4:7)</textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Nama Lengkap Almarhum / Almarhumah</label>
+                <input type="text" class="form-input" id="deceasedName" value="Bpk. [Nama Lengkap Almarhum]" placeholder="Contoh: Bpk. Stefanus Yosua Siregar">
+            </div>
+
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div>
+                    <label class="form-label">Tutup Usia</label>
+                    <input type="text" class="form-input" id="deceasedAge" value="68 Tahun" placeholder="Contoh: 68 Tahun">
+                </div>
+                <div>
+                    <label class="form-label">Hubungan dengan Sahabat</label>
+                    <input type="text" class="form-input" id="familyRelation" value="Ayahanda Tercinta dari [Nama Sahabat]" placeholder="Contoh: Ayahanda Tercinta dari Jonathan">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Nama Pengirim (Anda &amp; Sahabat-Sahabat)</label>
+                <input type="text" class="form-input" id="senderName" value="Jonathan Tidajoh &amp; Rekan-Rekan Terkasih" placeholder="Contoh: Sahabat-Sahabat Alumni &amp; Rekan Kerja">
+            </div>
+
+            <div class="action-grid">
+                <a href="/static/x_banner_kristen_protestan_60x160.png" download="x_banner_kristen_protestan_60x160.png" class="btn-primary">
+                    ⬇ Unduh PNG (Siap Cetak)
+                </a>
+                <button onclick="copyFullText()" class="btn-secondary">
+                    📋 Salin Teks Draf
+                </button>
+                <a href="https://www.canva.com/templates/?query=christian+funeral+banner" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                    🎨 Buka Template Canva
+                </a>
+                <a href="https://www.photopea.com" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                    🖥️ Buka di Photopea (Web)
+                </a>
+            </div>
+
+            <div style="margin-top: 24px; padding: 14px; background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.25); border-radius: 10px;">
+                <p style="font-size: 13px; color: var(--gold-light); line-height: 1.5;">
+                    💡 <b>Tautan Publik:</b> Siapa pun yang membuka tautan ini dapat meninjau desain, mengunduh berkas resolusi tinggi, atau menyalin susunan redaksi untuk diedit lebih lanjut.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <div class="toast" id="toast">Teks draf berhasil disalin ke clipboard!</div>
+
+    <script>
+        const verses = {
+            '2tim47': '"Aku telah mengakhiri pertandingan yang baik, aku telah mencapai garis akhir dan aku telah memelihara iman." (2 Timotius 4:7)',
+            'mazmur23': '"TUHAN adalah gembalaku, takkan kekurangan aku. Ia membaringkan aku di padang yang berumput hijau." (Mazmur 23:1-2)',
+            'yoh1125': '"Akulah kebangkitan dan hidup; barangsiapa percaya kepada-Ku, ia akan hidup walaupun ia sudah mati." (Yohanes 11:25)',
+            'filipi121': '"Karena bagiku hidup adalah Kristus dan mati adalah keuntungan." (Filipi 1:21)'
+        };
+
+        function updateVerse() {
+            const sel = document.getElementById('verseSelect').value;
+            const area = document.getElementById('verseText');
+            if (sel === 'custom') {
+                area.removeAttribute('readonly');
+                area.focus();
+            } else {
+                area.setAttribute('readonly', 'true');
+                area.value = verses[sel] || '';
+            }
+        }
+
+        function switchView(mode) {
+            const img = document.getElementById('bannerImage');
+            const btnPrint = document.getElementById('tabPrint');
+            const btnMockup = document.getElementById('tabMockup');
+            if (mode === 'print') {
+                img.src = '/static/x_banner_kristen_protestan_60x160.png';
+                btnPrint.classList.add('active');
+                btnMockup.classList.remove('active');
+            } else {
+                img.src = '/static/x_banner_kristen_mockup.png';
+                btnMockup.classList.add('active');
+                btnPrint.classList.remove('active');
+            }
+        }
+
+        function copyFullText() {
+            const v = document.getElementById('verseText').value;
+            const name = document.getElementById('deceasedName').value;
+            const age = document.getElementById('deceasedAge').value;
+            const rel = document.getElementById('familyRelation').value;
+            const sender = document.getElementById('senderName').value;
+
+            const text = `✝ TURUT BERDUKA CITA ✝\n` +
+                         `Telah Berpulang ke Rumah Bapa di Surga:\n\n` +
+                         `${name}\n` +
+                         `Tutup Usia: ${age}\n` +
+                         `${rel}\n\n` +
+                         `Firman Penghiburan:\n${v}\n\n` +
+                         `Kami yang Mengasihi & Turut Berbelasungkawa:\n` +
+                         `${sender}`;
+
+            navigator.clipboard.writeText(text).then(() => {
+                showToast("Teks draf berhasil disalin!");
+            });
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.innerText = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2500);
+        }
+    </script>
+</body>
+</html>
